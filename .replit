@@ -1,2 +1,9 @@
 language="nix"
-run = "./replit-run.sh"
+run = "./replit-app.json"
+modules = ["nodejs-20", "web", "bash"]
+
+[deployment]
+run = ["sh", "-c", "./replit-app.json"]
+
+[nix]
+channel = "stable-24_05"
