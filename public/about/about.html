@@ -126,6 +126,7 @@
             <li class="nav-item"><a href="../about/about.html">About</a></li>
             <li class="nav-item"><a href="../games/index.html">Games</a></li>
             <li class="nav-item"><a href="../proxy/proxy.html">Unblocker</a></li>
+            <li class="nav-item"><a href="../tools/index.html">Tools</a></li>
         </ul>
     </nav>
 
@@ -143,10 +144,25 @@
 
             <!-- RepClickin -->
             <div class="credit-item">
-                <img src="../images/rep.png" alt="RepClickin">
-                <h3>RepClickin</h3>
-                <p>contributed to the development of several scripts for the website.</p>
-            </div>
+    <img src="../images/rep.png" alt="RepClickin" id="easterEggImage">
+    <h3>RepClickin</h3>
+    <p>Contributed to the development of several scripts for the website.</p>
+</div>
+
+<script>
+    // JavaScript for Easter egg functionality
+    let clickCount = 0;
+    const image = document.getElementById('easterEggImage');
+    const secretURL = '../secret/index.html';
+
+    image.addEventListener('click', () => {
+        clickCount++;
+        if (clickCount === 3) {
+            window.location.href = secretURL;
+        }
+    });
+</script>
+
 
             <!-- ChitChatter -->
             <div class="credit-item">

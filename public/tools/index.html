@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Navbar -->
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../chatroom/index.html">Chatroom</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../games/index.html">Games</a></li>
+                <li><a href="../proxy/proxy.html">Proxy</a></li>
+                 <li><a href="index.html" class="active">Tools</a></li>
+            </ul>
+        </nav>
+
+        <!-- Games Page Content -->
+        <div id="games-container">
+            <h1>Featured Tools</h1>
+            <p>Please take note that this feature is currently being developed and that many games need to be added or deleted before it is finished.</p>
+            <div id="games-grid">
+                <div class="game-tile">
+                    <img src="../images/tools/historyflood.png" alt="Game 1" class="game-image">
+                    <h2 class="game-title">Flood Search History</h2>
+<button onclick="floodHistory()" class="play-button">Use Tool</button>
+
+<script>
+function floodHistory() {
+    var num = prompt("How many times do you want this page to show up in your history?");
+    if (num && !isNaN(num)) { // Ensure input is valid
+        num = parseInt(num, 10); // Convert input to an integer
+        var done = false;
+        var x = window.location.href;
+
+        for (var i = 1; i <= num; i++) {
+            history.pushState(0, 0, i === num ? x : i.toString());
+            if (i === num) {
+                done = true;
+            }
+        }
+
+        if (done) {
+            alert("Flooding Successful!\n" + window.location.href + "\nIs now in your history " + num + (num === 1 ? " time." : " times.\n"));
+        }
+    } else {
+        alert("Please enter a valid number.");
+    }
+}
+</script>
+
+
+
+
+
+                </div>
+                <div class="game-tile">
+                    <img src="../images/tools/aboutblank.png" alt="Game 2" class="game-image">
+                    <h2 class="game-title">Open In About:Blank</h2>
+                    <button onclick="openInIframe()" class="play-button">Use Tool</button>
+
+<script>
+function openInIframe() {
+    // Open a new blank window
+    const newWindow = window.open('about:blank', '_blank');
+    
+    // Ensure the window was successfully opened
+    if (newWindow) {
+        // Create an iframe and set its attributes
+        const iframe = newWindow.document.createElement('iframe');
+        iframe.src = 'index.html'; // URL to embed
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+
+        // Append the iframe to the new window's body
+        newWindow.document.body.style.margin = '0'; // Remove default margin
+        newWindow.document.body.style.overflow = 'hidden'; // Prevent scrolling
+        newWindow.document.body.appendChild(iframe);
+    } else {
+        alert('Popup blocked! Please allow popups for this website.');
+    }
+}
+</script>
+
+                </div>
+                <!-- Add more tiles as needed -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

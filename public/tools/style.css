@@ -1,0 +1,109 @@
+/* General Styling */
+:root {
+    --background: #121212;
+    --navbar: #1e1e1e;
+    --text: #f5f5f5;
+    --accent: #ff5252;
+    --hover: #292929;
+    --button-bg: #ff5252;
+    --button-hover: #ff7979;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--background);
+    color: var(--text);
+}
+
+nav {
+    background-color: var(--navbar);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+nav a.active, nav a:hover {
+    background-color: var(--hover);
+    border-radius: 5px;
+}
+
+#games-container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+#games-grid {
+    display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.game-tile {
+    background-color: var(--hover);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+     max-width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+.game-image {
+      width: 100%;
+    max-width: 512px; /* Ensures the image doesn't exceed 512px in width */
+    height: auto;
+    border-radius: 10px;
+}
+
+.game-title {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    color: var(--text);
+}
+
+.play-button {
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: var(--button-bg);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-button:hover {
+    background-color: var(--button-hover);
+}
