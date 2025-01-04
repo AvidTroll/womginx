@@ -3,183 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <title>Google Drive</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Lemon+Milk&display=swap" rel="stylesheet">
-    <script src="wombat-handler.js"></script>
-    <script src="proxy.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Global styles */
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        nav {
-            background-color: #1e1e1e;
-            padding: 10px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        nav .nav-list {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            gap: 20px;
-        }
-
-        nav .nav-item a {
-            text-decoration: none;
-            color: #f5f5f5;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        nav .nav-item a:hover {
-            background-color: #292929;
-            transform: scale(1.1);
-        }
-
-        /* Main content */
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 100px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        #title {
-            font-family: 'Lemon Milk', sans-serif;
-            font-size: 3rem;
-            color: #ff5252;
-            margin-bottom: 40px;
-        }
-
-        .credit-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .credit-item {
-            background-color: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-
-        .credit-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .credit-item h3 {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            color: #fff;
-        }
-
-        .credit-item p {
-            color: #b3b3b3;
-            font-size: 1rem;
-            margin-top: 10px;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="games-style.css">
 </head>
 <body>
-    <!-- Navigation bar -->
     <nav class="navbar">
         <ul class="nav-list">
-            <li class="nav-item"><a href="../index.html">Home</a></li>
-            <li class="nav-item selected"><a href="../chatroom/index.html">Chatroom</a></li>
-            <li class="nav-item"><a href="../about/about.html">About</a></li>
-            <li class="nav-item"><a href="../games/index.html">Games</a></li>
-            <li class="nav-item"><a href="../proxy/proxy.html">Unblocker</a></li>
-            <li class="nav-item"><a href="../tools/index.html">Tools</a></li>
+            <li class="nav-item">
+                <a href="../index.html">
+                    <span class="icon">🏠</span>
+                    <span class="name">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../chatroom/index.html">
+                    <span class="icon">💬</span>
+                    <span class="name">Chatroom</span>
+                </a>
+            </li>
+            <li class="nav-item selected">
+                <a href="../about/about.html">
+                    <span class="icon">ℹ️</span>
+                    <span class="name">About</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../games/index.html">
+                    <span class="icon">🎮</span>
+                    <span class="name">Games</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../proxy/proxy.html">
+                    <span class="icon">🔓</span>
+                    <span class="name">Unblocker</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../tools/index.html">
+                    <span class="icon">🛠️</span>
+                    <span class="name">Tools</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../settings/index.html">
+                    <span class="icon">⚙️</span>
+                    <span class="name">Settings</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
-    <!-- Main content -->
-    <div class="main-container">
-        <div id="title">Credits & Acknowledgments</div>
+    <main class="content">
+        <div id="games-container">
+            <h1 class="page-title">Credits & Acknowledgments</h1>
+            <p class="intro-text">
+                Special thanks to all contributors and projects that made this possible!
+            </p>
 
-        <div class="credit-container">
-            <!-- EaglerCraft -->
-            <div class="credit-item">
-                <img src="../images/eaglercraft.jpg" alt="EaglerCraft">
-                <h3>EaglerCraft</h3>
-                <p>A revolutionary project that brings Minecraft to your browser with impressive performance and accessibility. Kudos to the team behind EaglerCraft!</p>
-            </div>
-
-            <!-- RepClickin -->
-            <div class="credit-item">
-    <img src="../images/rep.png" alt="RepClickin" id="easterEggImage">
-    <h3>RepClickin</h3>
-    <p>Contributed to the development of several scripts for the website.</p>
-</div>
-
-<script>
-    // JavaScript for Easter egg functionality
-    let clickCount = 0;
-    const image = document.getElementById('easterEggImage');
-    const secretURL = '../secret/index.html';
-
-    image.addEventListener('click', () => {
-        clickCount++;
-        if (clickCount === 3) {
-            window.location.href = secretURL;
-        }
-    });
-</script>
-
-
-            <!-- ChitChatter -->
-            <div class="credit-item">
-                <img src="../images/chitchatter.png" alt="ChitChatter">
-                <h3>ChitChatter</h3>
-                <p>A modern messaging platform where you can connect with others, chat freely, and discover new communities.</p>
-            </div>
-
-            <!-- Womginx -->
-            <div class="credit-item">
-                <img src="../images/3kho.png" alt="Womginx">
-                <h3>3kh0</h3>
-                <p> I used a large number of games from his github and added them to the website.</p>
+            <div id="games-grid">
+                <!-- Credit items -->
+                <div class="credit-item">
+                    <img src="../images/eaglercraft.jpg" alt="EaglerCraft">
+                    <h3>EaglerCraft</h3>
+                    <p>A revolutionary project that brings Minecraft to your browser with impressive performance and accessibility. Kudos to the team behind EaglerCraft!</p>
+                </div>
+                <div class="credit-item">
+                    <img src="../images/rep.png" alt="RepClickin" id="easterEggImage">
+                    <h3>RepClickin</h3>
+                    <p>Contributed to the development of several scripts for the website.</p>
+                </div>
+                <div class="credit-item">
+                    <img src="../images/chitchatter.png" alt="ChitChatter">
+                    <h3>ChitChatter</h3>
+                    <p>A modern messaging platform where you can connect with others, chat freely, and discover new communities.</p>
+                </div>
+                <div class="credit-item">
+                    <img src="../images/binary.jpg" alt="Womginx">
+                    <h3>Binary Person</h3>
+                    <p>Forked womginx from them.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+    <script>
+        // JavaScript for Easter egg functionality
+        let clickCount = 0;
+        const image = document.getElementById('easterEggImage');
+        const secretURL = '../secret/index.html';
 
-   
+        image.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 3) {
+                window.location.href = secretURL;
+            }
+        });
+    </script>
+    <script>document.addEventListener("DOMContentLoaded", function() {
+        // Select all images on the page
+        const images = document.querySelectorAll('img');
+        
+        images.forEach(image => {
+            // Set the width and height to 512x512
+            image.style.width = '256px';
+            image.style.height = '256px';
+            
+            // Center the image by adjusting its display property
+            image.style.display = 'block';
+            image.style.margin = '0 auto';
+        });
+    });
+    </script>
+    <script>
+        // Function to apply the dark mode style
+        function applyDarkMode(isDarkMode) {
+            const root = document.documentElement;
+            if (isDarkMode) {
+                // Dark mode variables
+                const darkModeVariables = {
+    
+                };
+    
+                // Apply dark mode variables
+                for (const [key, value] of Object.entries(darkModeVariables)) {
+                    root.style.setProperty(key, value);
+                }
+            } else {
+                // Light mode variables
+                const lightModeVariables = {
+                    '--background': '#ffffff', // Lighter background
+                    '--sidebar': '#f8f9fa', // Lighter sidebar
+                    '--sidebar-hover': '#e9ecef', // Lighter sidebar hover
+                    '--text': '#212529', // Darker text
+                    '--text-muted': '#6c757d', // Muted text
+                    '--button-bg': '#007bff', // Button background
+                    '--button-hover': '#0056b3' // Button hover
+                };
+    
+                // Apply light mode variables
+                for (const [key, value] of Object.entries(lightModeVariables)) {
+                    root.style.setProperty(key, value);
+                }
+            }
+        }
+    
+        // Check the saved dark mode state and apply it
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        applyDarkMode(isDarkMode);
+    
+        // Set the toggle switch position based on dark mode state
+        document.getElementById('dark-mode-toggle').checked = isDarkMode;
+    
+        // Listen for changes in the dark mode toggle and save the state
+        document.getElementById('dark-mode-toggle').addEventListener('change', function() {
+            const darkModeEnabled = this.checked;
+            localStorage.setItem('darkMode', darkModeEnabled);
+            applyDarkMode(darkModeEnabled);
+        });
+    </script>
+    <script src="tools.js"></script>
 </body>
 </html>

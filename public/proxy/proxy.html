@@ -10,98 +10,61 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     <script src="wombat-handler.js"></script>
     <script src="proxy.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Ensure particles container covers the whole screen */
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;  /* Place particles behind other content */
-        }
-    </style>
-</head>
-<body>
-    <!-- Particles Container -->
-    <div id="particles-js"></div>
-
-    <div id="container">
-        <div id="title">Unlock The Web</div>
-        <div id="inner-container">
-            <input id="searchbar" type="text" placeholder="Browse The Internet" id="url-target"
-                   onkeydown='if(event.key==="Enter") go()' />
-            <button id="go-button" onclick="go()">Go</button>
-        </div>
-    </div>
-
-    <nav class="navbar">
-        <ul class="nav-list">
-            <li class="nav-item"><a href="../index.html">Home</a></li>
-            <li class="nav-item"><a href="../chatroom/index.html">Chatroom</a></li>
-            <li class="nav-item"><a href="../about/about.html">About</a></li>
-            <li class="nav-item"><a href="../games/index.html">Games</a></li>
-            <li class="nav-item selected"><a href="#">Unblocker</a></li>
-            <li class="nav-item"><a href="../tools/index.html">Tools</a></li>
-        </ul>
-    </nav>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Initialize particles.js with the provided configuration
-        particlesJS("particles-js", {
+        particlesJS('particles-js', {
             particles: {
                 number: {
-                    value: 400,  // Number of snowflakes
+                    value: 100,
                     density: {
                         enable: true,
                         value_area: 800
                     }
                 },
                 color: {
-                    value: "#fff"  // White snowflakes
+                    value: "#ffffff"
                 },
                 shape: {
-                    type: "circle",  // Snowflakes are circle-shaped
+                    type: "circle",
                     stroke: {
                         width: 0,
-                        color: "#00000"
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
                     }
                 },
                 opacity: {
                     value: 0.5,
                     random: true,
                     anim: {
-                        enable: false,
+                        enable: true,
                         speed: 1,
                         opacity_min: 0.1,
                         sync: false
                     }
                 },
                 size: {
-                    value: 10,
+                    value: 3,
                     random: true,
                     anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
+                        enable: false
                     }
                 },
                 line_linked: {
-                    enable: false,  // Disable particle connections
-                    distance: 500,
+                    enable: true,
+                    distance: 150,
                     color: "#ffffff",
                     opacity: 0.4,
-                    width: 2
+                    width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 6,
-                    direction: "bottom",  // Snowflakes fall downward
+                    speed: 2,
+                    direction: "none",
                     random: false,
                     straight: false,
-                    out_mode: "out",  // Snowflakes will disappear when they leave the screen
+                    out_mode: "out",
                     bounce: false,
                     attract: {
                         enable: false,
@@ -115,42 +78,446 @@
                 events: {
                     onhover: {
                         enable: true,
-                        mode: "bubble"  // Hovering over particles will make them expand
+                        mode: "repulse"
                     },
                     onclick: {
                         enable: true,
-                        mode: "repulse"  // Clicking will push the particles away
-                    },
-                    resize: true
+                        mode: "push"
+                    }
                 },
                 modes: {
-                    grab: {
-                        distance: 400,
-                        line_linked: {
-                            opacity: 0.5
-                        }
-                    },
-                    bubble: {
-                        distance: 400,
-                        size: 4,
-                        duration: 0.3,
-                        opacity: 1,
-                        speed: 3
-                    },
                     repulse: {
-                        distance: 200,
+                        distance: 100,
                         duration: 0.4
                     },
                     push: {
                         particles_nb: 4
-                    },
-                    remove: {
-                        particles_nb: 2
                     }
                 }
             },
-            retina_detect: false
+            retina_detect: true
         });
     </script>
+    <style>
+        :root {
+            --background: #181a1f;
+            --navbar: #1c2025;
+            --text: #e1e1e1;
+            --accent: #5a6a91;
+            --hover: #292f36;
+            --button-bg: #5a6a91;
+            --button-text: #ffffff;
+            --icon-size: 24px;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Raleway', sans-serif;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--font-primary);
+            background-color: var(--background);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 100%;
+            background-color: var(--navbar);
+            transition: width 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .navbar:hover {
+            width: 200px;
+        }
+
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .nav-item {
+            margin: 10px 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-item:hover {
+            background-color: var(--hover);
+        }
+
+        .icon {
+            font-size: var(--icon-size);
+            margin-right: 10px;
+            flex-shrink: 0;
+            transition: margin-right 0.3s ease;
+        }
+
+        .navbar:hover .icon {
+            margin-right: 20px;
+        }
+
+        .name {
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            opacity: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar:hover .name {
+            opacity: 1;
+        }
+
+        .nav-item.selected {
+            background-color: var(--hover);
+        }
+
+        #container {
+            margin-left: 60px;
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            transition: margin-left 0.3s ease;
+            z-index: 2;
+        }
+
+        .navbar:hover ~ #container {
+            margin-left: 200px;
+        }
+
+        #title {
+            font-family: var(--font-secondary);
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #inner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        #searchbar {
+            width: 60%;
+            max-width: 500px;
+            padding: 12px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            background-color: var(--hover);
+            color: var(--text);
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        #searchbar:focus {
+            transform: scale(1.02);
+            box-shadow: inset 0px 3px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #go-button {
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--button-bg);
+            color: var(--text);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #go-button:hover {
+            background-color: var(--button-bg);
+            transform: scale(1.05);
+        }
+
+        #featured {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .featured-title {
+            font-family: var(--font-secondary);
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .featured-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .featured-item {
+            width: 200px;
+            background-color: var(--hover);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .featured-thumb {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .featured-title {
+            padding: 10px;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .play-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            color: var(--button-text);
+            background-color: var(--button-bg);
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .play-button:hover {
+            background-color: var(--accent);
+        }
+
+        @media screen and (max-width: 768px) {
+            #searchbar {
+                width: 80%;
+            }
+
+            #title {
+                font-size: 2.5rem;
+            }
+
+            #go-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+
+            .navbar {
+                width: 50px;
+            }
+
+            .navbar:hover {
+                width: 150px;
+            }
+
+            .content {
+                margin-left: 60px;
+            }
+
+            .navbar:hover ~ .content {
+                margin-left: 150px;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="../index.html"><span class="icon">🏠</span><span class="name">Home</span></a></li>
+            <li class="nav-item"><a href="../chatroom/index.html"><span class="icon">💬</span><span class="name">Chatroom</span></a></li>
+            <li class="nav-item"><a href="../about/about.html"><span class="icon">ℹ️</span><span class="name">About</span></a></li>
+            <li class="nav-item"><a href="../games/index.html"><span class="icon">🎮</span><span class="name">Games</span></a></li>
+            <li class="nav-item selected"><a href="#"><span class="icon">🔓</span><span class="name">Unblocker</span></a></li>
+            <li class="nav-item"><a href="../tools/index.html"><span class="icon">🛠️</span><span class="name">Tools</span></a></li>
+            <li class="nav-item"><a href="../settings/index.html"><span class="icon">⚙️</span><span class="name">Settings</span></a></li>
+        </ul>
+    </nav>
+
+    <div id="particles-js"></div>
+
+    <div id="container">
+        <div id="title">Unlock The Web</div>
+        <div id="inner-container">
+            <input id="searchbar" type="text" placeholder="Browse The Internet" id="url-target"
+                   onkeydown='if(event.key==="Enter") go()' />
+            <button id="go-button" onclick="go()">Go</button>
+        </div>
+
+        <div id="featured">
+            <div class="featured-title">Featured Websites</div>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <img src="../images/sites/Discord.jpg" alt="Site 1" class="featured-thumb" />
+                    <div class="featured-title">Discord</div>
+                    <a href="../main/https://discord.com/" class="play-button">Play</a>
+                </div>
+                <div class="featured-item">
+                    <img src="../images/sites/cmg.jpg" alt="Site 2" class="featured-thumb" />
+                    <div class="featured-title">CoolMathGames</div>
+                    <a href="../main/https://CoolMathGames.com/" class="play-button">Play</a>
+                </div>
+                <div class="featured-item">
+                    <img src="../images/sites/youtube.jpg" alt="Site 3" class="featured-thumb" />
+                    <div class="featured-title">Youtube (Alternative)</div>
+                    <a href="../main/https://piped.video/trending" class="play-button">Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Function to apply styles for dark or light mode
+        function applyDarkMode(isDarkMode) {
+            const root = document.documentElement;
+    
+
+    
+            const lightModeVariables = {
+                '--background': '#ffffff', // Lighter background
+                '--navbar': '#f8f9fa', // Lighter navbar
+                '--hover': '#e9ecef', // Navbar hover in light mode
+                '--text': '#212529', // Darker text
+                '--text-muted': '#6c757d', // Muted text
+                '--button-bg': '#007bff', // Button background
+                '--button-hover': '#0056b3',
+                '--accent': '#007bff',
+            };
+    
+            // Select the appropriate variables
+            const variables = isDarkMode ? darkModeVariables : lightModeVariables;
+    
+            // Apply the variables to the root element
+            for (const [key, value] of Object.entries(variables)) {
+                root.style.setProperty(key, value);
+            }
+        }
+    
+        // On page load: Check saved dark mode state and apply it
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        applyDarkMode(isDarkMode);
+    
+        // Set the toggle switch based on the saved state
+        const toggle = document.getElementById('dark-mode-toggle');
+        if (toggle) {
+            toggle.checked = isDarkMode;
+    
+            // Add event listener for toggle changes
+            toggle.addEventListener('change', function () {
+                const darkModeEnabled = this.checked;
+                localStorage.setItem('darkMode', darkModeEnabled);
+                applyDarkMode(darkModeEnabled);
+            });
+        }
+    </script>
+    <script>
+        // Function to open a new blank window with iframe
+        function openInIframe() {
+            // Check if the current window is already in "about:blank" or inside an iframe
+            if (window.location.href === 'about:blank' || window.self !== window.top) {
+                return; // Do not proceed if already in about:blank or inside an iframe
+            }
+    
+            const newWindow = window.open('about:blank', '_blank');
+    
+            if (newWindow) {
+                const iframe = newWindow.document.createElement('iframe');
+                iframe.src = 'index.html'; // URL to embed
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+    
+                newWindow.document.body.style.margin = '0';
+                newWindow.document.body.style.overflow = 'hidden';
+                newWindow.document.body.appendChild(iframe);
+            } else {
+                alert('Popup blocked! Please allow popups for this website.');
+            }
+        }
+    
+        // Check the saved open-blank-toggle state
+        const isOpenBlankEnabled = localStorage.getItem('openBlank') === 'true';
+        if (isOpenBlankEnabled) {
+            openInIframe();
+        }
+    
+        // Set the toggle switch position based on open blank state
+        document.getElementById('open-blank-toggle').checked = isOpenBlankEnabled;
+    
+        // Listen for changes in the open blank toggle and save the state
+        document.getElementById('open-blank-toggle').addEventListener('change', function() {
+            const openBlankEnabled = this.checked;
+            localStorage.setItem('openBlank', openBlankEnabled);
+    
+            if (openBlankEnabled) {
+                openInIframe();
+            }
+        });
+    </script>
+    
 </body>
 </html>

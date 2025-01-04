@@ -5,66 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Drive</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <ul class="nav-list">
-            <li class="nav-item selected">
-                <a href="index.html">
+            <li class="nav-item">
+                <a href="../index.html">
                     <span class="icon">🏠</span>
                     <span class="name">Home</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="chatroom/index.html">
+                <a href="../chatroom/index.html">
                     <span class="icon">💬</span>
                     <span class="name">Chatroom</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="about/about.html">
+                <a href="../about/about.html">
                     <span class="icon">ℹ️</span>
                     <span class="name">About</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="games/index.html">
+                <a href="../games/index.html">
                     <span class="icon">🎮</span>
                     <span class="name">Games</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="proxy/proxy.html">
+                <a href="../proxy/proxy.html">
                     <span class="icon">🔓</span>
                     <span class="name">Unblocker</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="tools/index.html">
+                <a href="../tools/index.html">
                     <span class="icon">🛠️</span>
                     <span class="name">Tools</span>
                 </a>
             </li>
-        </li>
-        <li class="nav-item">
-            <a href="settings/index.html">
-                <span class="icon">⚙️</span>
-                <span class="name">Settings</span>
-            </a>
-        </li>
+            <li class="nav-item selected">
+                <a href="../settings/index.html">
+                    <span class="icon">⚙️</span>
+                    <span class="name">Settings</span>
+                </a>
+            </li>
         </ul>
     </nav>
+
     <main class="content">
         <div class="hero">
-            <h1>Join The Unfiltered Internet.</h1>
-            <p>
-Our software is designed to help users unlock the internet and regain access to communication on devices that are otherwise restricted or locked. Many individuals face limitations when it comes to accessing certain websites, services, or applications due to device restrictions, network firewalls, or geographic barriers. Our solution removes these digital walls by providing a secure and seamless connection, ensuring that users can access the full range of information and services they need, regardless of their location or the device they are using.</p>
-            <button class="cta-button" onclick="window.location.href='proxy/proxy.html'">I'm Ready!</button>
+            <h1>Settings</h1>
+            <div class="settings-section">
+                <div class="setting-item">
+                    <label for="dark-mode-toggle" class="setting-label">Dark Mode</label>
+                    <input type="checkbox" id="dark-mode-toggle" class="toggle-switch">
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">Version</label>
+                    <span class="setting-value">1.0.3 Beta</span>
+                </div>
+                <div class="setting-item">
+                    <label for="open-blank-toggle" class="setting-label">Open in about:blank on startup</label>
+                    <input type="checkbox" id="open-blank-toggle" class="toggle-switch">
+                    
+                </div>
+                <p>Note: Some features may require a refresh to apply.</p>
+            </div>
+        </div> 
+        <div class="hero">
+            <h2>Changelog</h2>
+            <div class="settings-section">
+                <div class="setting-item">
+                    <span class="setting-item">1.0.3 Beta (1/4/2025)</span>
+                </div>
+                <div>
+                    <div><span class="setting-value">UI Changed</span></div>
+                    <div><span class="setting-value">Settings Page Added</span></div>
+                    <div><span class="setting-value">Proxy Search Bar Improved</span></div>
+                    <div><span class="setting-value">Light Mode Added (Beta) </span></div>
+                </div>
+            </div>
         </div>
+        <!-- Add additional changelog sections as needed -->
+
     </main>
-    
+
     <script>
         // Function to apply the dark mode style
         function applyDarkMode(isDarkMode) {
@@ -158,5 +186,63 @@ Our software is designed to help users unlock the internet and regain access to 
 </script>
 
 
+    <style>
+        .settings-section {
+            background-color: var(--sidebar);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sidebar-hover);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-size: 1.2rem;
+            font-family: var(--font-secondary);
+            color: var(--text);
+        }
+
+        .setting-value {
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            color: var(--text-muted);
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background-color: var(--button-bg);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background-color: var(--text);
+            border-radius: 50%;
+            top: 1px;
+            left: 1px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch:checked::before {
+            transform: translateX(20px);
+        }
+    </style>
 </body>
 </html>

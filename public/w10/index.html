@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +8,103 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-    
+    <script src="https://chitchatter.im/sdk.js"></script>
 </head>
-<body style="margin: 0; height: 100%;">
-
+<body>
     <nav class="navbar">
         <ul class="nav-list">
-            <li class="nav-item"><a href="../index.html">Home</a></li>
-            <li class="nav-item "><a href="../chatroom/index.html">Chatroom</a></li>
-            <li class="nav-item"><a href="../about/about.html">About</a></li>
-            <li class="nav-item"><a href="../games/index.html">Games</a></li>
-            <li class="nav-item"><a href="../proxy/proxy.html">Unblocker</a></li>
-            <li class="nav-item selected"><a href="../tools/index.html">Tools</a></li>
+            <li class="nav-item ">
+                <a href="../index.html">
+                    <span class="icon">🏠</span>
+                    <span class="name">Home</span>
+                </a>
+            </li>
+            <li class="nav-item selected">
+                <a href="../chatroom/index.html">
+                    <span class="icon">💬</span>
+                    <span class="name">Chatroom</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../about/about.html">
+                    <span class="icon">ℹ️</span>
+                    <span class="name">About</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../games/index.html">
+                    <span class="icon">🎮</span>
+                    <span class="name">Games</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../proxy/proxy.html">
+                    <span class="icon">🔓</span>
+                    <span class="name">Unblocker</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../tools/index.html">
+                    <span class="icon">🛠️</span>
+                    <span class="name">Tools</span>
+                </a>
+            </li>
+        </li>
+        <li class="nav-item">
+            <a href="../settings/index.html">
+                <span class="icon">⚙️</span>
+                <span class="name">Settings</span>
+            </a>
+        </li>
         </ul>
     </nav>
-    </body>
     <iframe src="vmload/VirtualXP.htm"></iframe>
+<script>
+    // Function to apply the dark mode style
+    function applyDarkMode(isDarkMode) {
+        const root = document.documentElement;
+        if (isDarkMode) {
+            // Dark mode variables
+            const darkModeVariables = {
 
+            };
 
+            // Apply dark mode variables
+            for (const [key, value] of Object.entries(darkModeVariables)) {
+                root.style.setProperty(key, value);
+            }
+        } else {
+            // Light mode variables
+            const lightModeVariables = {
+                '--background': '#ffffff', // Lighter background
+                '--sidebar': '#f8f9fa', // Lighter sidebar
+                '--sidebar-hover': '#e9ecef', // Lighter sidebar hover
+                '--text': '#212529', // Darker text
+                '--text-muted': '#6c757d', // Muted text
+                '--button-bg': '#007bff', // Button background
+                '--button-hover': '#0056b3' // Button hover
+            };
+
+            // Apply light mode variables
+            for (const [key, value] of Object.entries(lightModeVariables)) {
+                root.style.setProperty(key, value);
+            }
+        }
+    }
+
+    // Check the saved dark mode state and apply it
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    applyDarkMode(isDarkMode);
+
+    // Set the toggle switch position based on dark mode state
+    document.getElementById('dark-mode-toggle').checked = isDarkMode;
+
+    // Listen for changes in the dark mode toggle and save the state
+    document.getElementById('dark-mode-toggle').addEventListener('change', function() {
+        const darkModeEnabled = this.checked;
+        localStorage.setItem('darkMode', darkModeEnabled);
+        applyDarkMode(darkModeEnabled);
+    });
+</script>
+</body>
 </html>

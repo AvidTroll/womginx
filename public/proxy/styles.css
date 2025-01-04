@@ -1,80 +1,133 @@
 :root {
-    --background: #121212;
-    --navbar: #1e1e1e;
-    --text: #e0e0e0;
-    --accent: #ff5252;
-    --hover: #292929;
-    --button-bg: #ff5252;
-    --button-text: #ffffff;
+    --background: #181a1f; /* Darker background */
+    --navbar: #1c2025; /* Darker navbar */
+    --text: #e1e1e1; /* Lighter text */
+    --accent: #5a6a91; /* Darker button background */
+    --hover: #292f36; /* Sidebar hover */
+    --button-bg: #5a6a91; /* Button background */
+    --button-text: #ffffff; /* Button text color */
+    --icon-size: 24px;
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Raleway', sans-serif;
 }
 
-body {
+/* Ensure the page occupies the full viewport and prevent scrolling */
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
     font-family: var(--font-primary);
     background-color: var(--background);
     color: var(--text);
-    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
+/* Full-screen particles background */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keep particles in the background */
+}
+
+/* Navbar styles */
 .navbar {
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    width: 60px;
+    height: 100%;
     background-color: var(--navbar);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: width 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
     z-index: 1000;
-    padding: 10px 0;
+    overflow: hidden;
+}
+
+.navbar:hover {
+    width: 200px;
 }
 
 .nav-list {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 10px 0;
 }
 
 .nav-item {
-    margin: 0 15px;
+    margin: 10px 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .nav-item a {
     text-decoration: none;
-    font-size: 16px;
-    font-family: var(--font-secondary);
     color: var(--text);
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
-.nav-item a:hover {
+.nav-item:hover {
     background-color: var(--hover);
-    transform: scale(1.1);
 }
 
-.nav-item.selected a {
-    color: var(--accent);
-    position: relative;
+.icon {
+    font-size: var(--icon-size);
+    margin-right: 10px;
+    flex-shrink: 0;
+    transition: margin-right 0.3s ease; /* Smooth transition on hover */
 }
 
-.nav-item.selected a::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--accent);
-    border-radius: 1px;
+.navbar:hover .icon {
+    margin-right: 20px;
 }
 
+.name {
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s ease; /* Smooth transition of the name */
+}
+
+.navbar:hover .name {
+    opacity: 1;
+}
+
+.nav-item.selected {
+    background-color: var(--hover);
+}
+
+/* Container to hold the page content */
 #container {
-    margin-top: 120px;
-    text-align: center;
+    margin-left: 60px; /* Adjusting for navbar width */
     padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;  /* Full height of the viewport */
+    transition: margin-left 0.3s ease; /* Smooth transition on content resize */
+    z-index: 2;
+}
+
+.navbar:hover ~ #container {
+    margin-left: 200px; /* Adjust content margin when navbar expands */
 }
 
 #title {
@@ -83,14 +136,6 @@ body {
     color: var(--accent);
     margin-bottom: 10px;
     animation: fadeIn 1.5s ease-in-out;
-}
-
-#description {
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    color: #b3b3b3;
-    margin-bottom: 30px;
-    animation: fadeIn 2s ease-in-out;
 }
 
 #inner-container {
@@ -112,7 +157,8 @@ body {
     background-color: var(--hover);
     color: var(--text);
     box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth focus transition */
+    text-align: center;  /* Center the text inside the search bar */
 }
 
 #searchbar:focus {
@@ -129,11 +175,11 @@ body {
     background-color: var(--button-bg);
     color: var(--text);
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
 }
 
 #go-button:hover {
-    background-color: var(--button-hover);
+    background-color: var(--button-bg);
     transform: scale(1.05);
 }
 
@@ -159,12 +205,24 @@ body {
         font-size: 2.5rem;
     }
 
-    #description {
-        font-size: 1rem;
-    }
-
     #go-button {
         font-size: 0.9rem;
         padding: 10px 20px;
+    }
+
+    .navbar {
+        width: 50px;
+    }
+
+    .navbar:hover {
+        width: 150px;
+    }
+
+    .content {
+        margin-left: 60px;
+    }
+
+    .navbar:hover ~ .content {
+        margin-left: 150px;
     }
 }

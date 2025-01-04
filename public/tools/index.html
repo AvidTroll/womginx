@@ -5,114 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Drive</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="games-style.css">
 </head>
 <body>
-    <div id="container">
-        <!-- Navbar -->
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../chatroom/index.html">Chatroom</a></li>
-                <li><a href="../about/about.html">About</a></li>
-                <li><a href="../games/index.html">Games</a></li>
-                <li><a href="../proxy/proxy.html">Proxy</a></li>
-                 <li><a href="index.html" class="active">Tools</a></li>
-            </ul>
-        </nav>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="../index.html">
+                    <span class="icon">🏠</span>
+                    <span class="name">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../chatroom/index.html">
+                    <span class="icon">💬</span>
+                    <span class="name">Chatroom</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../about/about.html">
+                    <span class="icon">ℹ️</span>
+                    <span class="name">About</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a href="index.html">
+                    <span class="icon">🎮</span>
+                    <span class="name">Games</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../proxy/proxy.html">
+                    <span class="icon">🔓</span>
+                    <span class="name">Unblocker</span>
+                </a>
+            </li>
+            <li class="nav-item selected">
+                <a href="../tools/index.html">
+                    <span class="icon">🛠️</span>
+                    <span class="name">Tools</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../settings/index.html">
+                    <span class="icon">⚙️</span>
+                    <span class="name">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Games Page Content -->
+    <main class="content">
         <div id="games-container">
-            <h1>Featured Tools</h1>
-            <p>Please take note that this feature is currently being developed and that many tools have not reached their final form. </p>
+            <h1 class="page-title">Featured Tools</h1>
+            <p class="intro-text">
+                Please note that this feature is currently under development. More tools will be working soon!
+            </p>
+
             <div id="games-grid">
-                <div class="game-tile">
-                    <img src="../images/tools/historyflood.png" alt="Game 1" class="game-image">
-                    <h2 class="game-title">Flood Search History</h2>
-<button onclick="floodHistory()" class="play-button">Use Tool</button>
+                <!-- Game tiles dynamically added -->
+            </div>
+        </div>
+    </main>
+    <script>
+        // Function to open a new blank window with iframe
+        function openInIframe() {
+            // Check if the current window is already in "about:blank" or inside an iframe
+            if (window.location.href === 'about:blank' || window.self !== window.top) {
+                return; // Do not proceed if already in about:blank or inside an iframe
+            }
+    
+            const newWindow = window.open('about:blank', '_blank');
+    
+            if (newWindow) {
+                const iframe = newWindow.document.createElement('iframe');
+                iframe.src = 'index.html'; // URL to embed
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+    
+                newWindow.document.body.style.margin = '0';
+                newWindow.document.body.style.overflow = 'hidden';
+                newWindow.document.body.appendChild(iframe);
+            } else {
+                alert('Popup blocked! Please allow popups for this website.');
+            }
+        }
+    
+        // Check the saved open-blank-toggle state
+        const isOpenBlankEnabled = localStorage.getItem('openBlank') === 'true';
+        if (isOpenBlankEnabled) {
+            openInIframe();
+        }
+    
+        // Set the toggle switch position based on open blank state
+        document.getElementById('open-blank-toggle').checked = isOpenBlankEnabled;
+    
+        // Listen for changes in the open blank toggle and save the state
+        document.getElementById('open-blank-toggle').addEventListener('change', function() {
+            const openBlankEnabled = this.checked;
+            localStorage.setItem('openBlank', openBlankEnabled);
+    
+            if (openBlankEnabled) {
+                openInIframe();
+            }
+        });
+    </script>
+       <script>
+        // Function to apply the dark mode style
+        function applyDarkMode(isDarkMode) {
+            const root = document.documentElement;
+            if (isDarkMode) {
+                // Dark mode variables
+                const darkModeVariables = {
 
-<script>
-function floodHistory() {
-    var num = prompt("How many times do you want this page to show up in your history?");
-    if (num && !isNaN(num)) { // Ensure input is valid
-        num = parseInt(num, 10); // Convert input to an integer
-        var done = false;
-        var x = window.location.href;
+                };
 
-        for (var i = 1; i <= num; i++) {
-            history.pushState(0, 0, i === num ? x : i.toString());
-            if (i === num) {
-                done = true;
+                // Apply dark mode variables
+                for (const [key, value] of Object.entries(darkModeVariables)) {
+                    root.style.setProperty(key, value);
+                }
+            } else {
+                // Light mode variables
+                const lightModeVariables = {
+                    '--background': '#ffffff', // Lighter background
+                    '--sidebar': '#f8f9fa', // Lighter sidebar
+                    '--sidebar-hover': '#e9ecef', // Lighter sidebar hover
+                    '--text': '#212529', // Darker text
+                    '--text-muted': '#6c757d', // Muted text
+                    '--button-bg': '#007bff', // Button background
+                    '--button-hover': '#0056b3' // Button hover
+                };
+
+                // Apply light mode variables
+                for (const [key, value] of Object.entries(lightModeVariables)) {
+                    root.style.setProperty(key, value);
+                }
             }
         }
 
-        if (done) {
-            alert("Flooding Successful!\n" + window.location.href + "\nIs now in your history " + num + (num === 1 ? " time." : " times.\n"));
-        }
-    } else {
-        alert("Please enter a valid number.");
-    }
-}
-</script>
+        // Check the saved dark mode state and apply it
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        applyDarkMode(isDarkMode);
 
+        // Set the toggle switch position based on dark mode state
+        document.getElementById('dark-mode-toggle').checked = isDarkMode;
 
-
-
-
-                </div>
-                <div class="game-tile">
-                    <img src="../images/tools/aboutblank.png" alt="Game 2" class="game-image">
-                    <h2 class="game-title">Open In About:Blank</h2>
-                    <button onclick="openInIframe()" class="play-button">Use Tool</button>
-
-<script>
-function openInIframe() {
-    // Open a new blank window
-    const newWindow = window.open('about:blank', '_blank');
-    
-    // Ensure the window was successfully opened
-    if (newWindow) {
-        // Create an iframe and set its attributes
-        const iframe = newWindow.document.createElement('iframe');
-        iframe.src = 'index.html'; // URL to embed
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.border = 'none';
-
-        // Append the iframe to the new window's body
-        newWindow.document.body.style.margin = '0'; // Remove default margin
-        newWindow.document.body.style.overflow = 'hidden'; // Prevent scrolling
-        newWindow.document.body.appendChild(iframe);
-    } else {
-        alert('Popup blocked! Please allow popups for this website.');
-    }
-}
-</script>
-             </div>
-                <div class="game-tile">
-                    <img src="../images/tools/w10.webp" alt="Game 2" class="game-image">
-                    <h2 class="game-title">Windows Virtual Machine
-                        (Takes A While To Load)
-                    </h2>
-                    <button onclick="window.location.href='../w10/index.html'" class="play-button">Use Tool</button>
- </div>
-                <div class="game-tile">
-                    <img src="../images/tools/report.png" alt="Game 2" class="game-image">
-                    <h2 class="game-title">Report A Problem
-                    </h2>
-                    <button onclick="window.location.href='../suggest/problem.html'" class="play-button">Use Tool</button>
-                </div>
-                    <div class="game-tile">
-                    <img src="../images/tools/suggest.png" alt="Game 2" class="game-image">
-                    <h2 class="game-title">Suggest A Game/Feature
-                    </h2>
-                    <button onclick="window.location.href='../suggest/index.html'" class="play-button">Use Tool</button>
-
-                </div>
-                <!-- Add more tiles as needed -->
-            </div>
-        </div>
-    </div>
+        // Listen for changes in the dark mode toggle and save the state
+        document.getElementById('dark-mode-toggle').addEventListener('change', function() {
+            const darkModeEnabled = this.checked;
+            localStorage.setItem('darkMode', darkModeEnabled);
+            applyDarkMode(darkModeEnabled);
+        });
+    </script>
+    <script src="tools.js"></script>
 </body>
 </html>

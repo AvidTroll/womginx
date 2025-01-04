@@ -3,37 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+    <title>Google Drive</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="games-style.css">
 </head>
 <body>
-    <div id="container">
-        <!-- Navbar -->
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../chatroom/index.html">Chatroom</a></li>
-                <li><a href="../about/about.html">About</a></li>
-                <li><a href="index.html" class="active">Games</a></li>
-                <li><a href="../proxy/proxy.html">Proxy</a></li>
-                <li class="nav-item"><a href="../tools/index.html">Tools</a></li>
-            </ul>
-        </nav>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="../index.html">
+                    <span class="icon">🏠</span>
+                    <span class="name">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../chatroom/index.html">
+                    <span class="icon">💬</span>
+                    <span class="name">Chatroom</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../about/about.html">
+                    <span class="icon">ℹ️</span>
+                    <span class="name">About</span>
+                </a>
+            </li>
+            <li class="nav-item selected">
+                <a href="index.html">
+                    <span class="icon">🎮</span>
+                    <span class="name">Games</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../proxy/proxy.html">
+                    <span class="icon">🔓</span>
+                    <span class="name">Unblocker</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../tools/index.html">
+                    <span class="icon">🛠️</span>
+                    <span class="name">Tools</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../settings/index.html">
+                    <span class="icon">⚙️</span>
+                    <span class="name">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Games Page Content -->
+    <main class="content">
         <div id="games-container">
-            <h1>Featured Games</h1>
-            <p>Please take note that this feature is currently being developed and that many games need to be added or deleted before it is finished.</p>
-            <p>To search through games, simultaneously press the Ctrl and F keys. Later on, a better system will be added.</p>
+            <h1 class="page-title">Featured Games</h1>
+            <p class="intro-text">
+                Please note that this feature is currently under development. More games will be added soon!
+            </p>
+            <p class="intro-text">
+                To search through games, use <strong>Ctrl + F</strong>. An advanced search system will be implemented later.
+            </p>
 
             <div id="games-grid">
-                <!-- Game tiles will be inserted here by JavaScript -->
+                <!-- Game tiles dynamically added -->
             </div>
         </div>
-    </div>
+    </main>
+    <script>
+        // Function to open a new blank window with iframe
+        function openInIframe() {
+            // Check if the current window is already in "about:blank" or inside an iframe
+            if (window.location.href === 'about:blank' || window.self !== window.top) {
+                return; // Do not proceed if already in about:blank or inside an iframe
+            }
+    
+            const newWindow = window.open('about:blank', '_blank');
+    
+            if (newWindow) {
+                const iframe = newWindow.document.createElement('iframe');
+                iframe.src = 'index.html'; // URL to embed
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+    
+                newWindow.document.body.style.margin = '0';
+                newWindow.document.body.style.overflow = 'hidden';
+                newWindow.document.body.appendChild(iframe);
+            } else {
+                alert('Popup blocked! Please allow popups for this website.');
+            }
+        }
+    
+        // Check the saved open-blank-toggle state
+        const isOpenBlankEnabled = localStorage.getItem('openBlank') === 'true';
+        if (isOpenBlankEnabled) {
+            openInIframe();
+        }
+    
+        // Set the toggle switch position based on open blank state
+        document.getElementById('open-blank-toggle').checked = isOpenBlankEnabled;
+    
+        // Listen for changes in the open blank toggle and save the state
+        document.getElementById('open-blank-toggle').addEventListener('change', function() {
+            const openBlankEnabled = this.checked;
+            localStorage.setItem('openBlank', openBlankEnabled);
+    
+            if (openBlankEnabled) {
+                openInIframe();
+            }
+        });
+    </script>
+       <script>
+        // Function to apply the dark mode style
+        function applyDarkMode(isDarkMode) {
+            const root = document.documentElement;
+            if (isDarkMode) {
+                // Dark mode variables
+                const darkModeVariables = {
 
+                };
+
+                // Apply dark mode variables
+                for (const [key, value] of Object.entries(darkModeVariables)) {
+                    root.style.setProperty(key, value);
+                }
+            } else {
+                // Light mode variables
+                const lightModeVariables = {
+                    '--background': '#ffffff', // Lighter background
+                    '--sidebar': '#f8f9fa', // Lighter sidebar
+                    '--sidebar-hover': '#e9ecef', // Lighter sidebar hover
+                    '--text': '#212529', // Darker text
+                    '--text-muted': '#6c757d', // Muted text
+                    '--button-bg': '#007bff', // Button background
+                    '--button-hover': '#0056b3' // Button hover
+                };
+
+                // Apply light mode variables
+                for (const [key, value] of Object.entries(lightModeVariables)) {
+                    root.style.setProperty(key, value);
+                }
+            }
+        }
+
+        // Check the saved dark mode state and apply it
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        applyDarkMode(isDarkMode);
+
+        // Set the toggle switch position based on dark mode state
+        document.getElementById('dark-mode-toggle').checked = isDarkMode;
+
+        // Listen for changes in the dark mode toggle and save the state
+        document.getElementById('dark-mode-toggle').addEventListener('change', function() {
+            const darkModeEnabled = this.checked;
+            localStorage.setItem('darkMode', darkModeEnabled);
+            applyDarkMode(darkModeEnabled);
+        });
+    </script>
     <script src="games.js"></script>
 </body>
 </html>

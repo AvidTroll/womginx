@@ -1,12 +1,13 @@
 /* styles.css */
 :root {
-    --background: #121212;
-    --navbar: #1e1e1e;
-    --text: #e0e0e0;
-    --accent: #ff5252;
-    --hover: #292929;
-    --button-bg: #ff5252;
-    --button-text: #ffffff;
+    --background: #181a1f; /* Darker background */
+    --sidebar: #1c2025; /* Darker sidebar */
+    --sidebar-hover: #292f36; /* Darker sidebar hover */
+    --text: #e1e1e1; /* Lighter text */
+    --text-muted: #a0a0a0; /* Slightly muted text */
+    --button-bg: #5a6a91; /* Darker button background */
+    --button-hover: #475b7a; /* Darker button hover */
+    --icon-size: 24px;
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Raleway', sans-serif;
 }
@@ -16,66 +17,97 @@ body {
     font-family: var(--font-primary);
     background-color: var(--background);
     color: var(--text);
+    display: flex;
     overflow-x: hidden;
 }
 
+/* Sidebar (Navbar) */
 .navbar {
     position: fixed;
     top: 0;
-    width: 100%;
-    background-color: var(--navbar);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background-color: var(--sidebar);
+    transition: width 0.3s;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
     z-index: 1000;
-    padding: 10px 0;
+    overflow: hidden;
+}
+
+.navbar:hover {
+    width: 200px;
 }
 
 .nav-list {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 10px 0;
 }
 
 .nav-item {
-    margin: 0 15px;
+    margin: 10px 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .nav-item a {
     text-decoration: none;
-    font-size: 16px;
-    font-family: var(--font-secondary);
     color: var(--text);
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
-.nav-item a:hover {
-    background-color: var(--hover);
-    transform: scale(1.1);
+.nav-item:hover {
+    background-color: var(--sidebar-hover);
 }
 
-.nav-item.selected a {
-    color: var(--accent);
-    position: relative;
+.icon {
+    font-size: var(--icon-size);
+    margin-right: 10px;
+    flex-shrink: 0;
+    transition: margin-right 0.3s;
 }
 
-.nav-item.selected a::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--accent);
-    border-radius: 1px;
+.navbar:hover .icon {
+    margin-right: 20px;
 }
 
+.name {
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s;
+}
+
+.navbar:hover .name {
+    opacity: 1;
+}
+
+.nav-item.selected {
+    background-color: var(--sidebar-hover);
+}
+
+/* Content Section */
 .content {
-    margin-top: 80px;
-    text-align: center;
+    margin-left: 60px;
     padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+    transition: margin-left 0.3s;
+}
+
+.navbar:hover ~ .content {
+    margin-left: 200px;
 }
 
 .hero {
@@ -90,20 +122,20 @@ body {
     font-weight: 700;
     font-family: var(--font-secondary);
     margin-bottom: 20px;
-    color: var(--accent);
+    color: var(--text);
 }
 
 .hero p {
     font-size: 1.2rem;
     font-weight: 300;
-    color: #bdbdbd;
+    color: var(--text-muted);
     margin-bottom: 30px;
     line-height: 1.8;
 }
 
 .cta-button {
     background-color: var(--button-bg);
-    color: var(--button-text);
+    color: var(--text);
     border: none;
     padding: 12px 25px;
     border-radius: 25px;
@@ -115,7 +147,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #ff7979;
+    background-color: var(--button-hover);
     transform: scale(1.05);
 }
 
@@ -133,6 +165,22 @@ body {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+    .navbar {
+        width: 50px;
+    }
+
+    .navbar:hover {
+        width: 150px;
+    }
+
+    .content {
+        margin-left: 60px;
+    }
+
+    .navbar:hover ~ .content {
+        margin-left: 150px;
+    }
+
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -145,22 +193,6 @@ body {
         padding: 10px 20px;
     }
 }
-
-
-   /* Reset body and html */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%; /* Ensure the body and html are full height */
-    }
-
-    /* Navbar styles */
-    nav {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
 
     /* Iframe takes up remaining space */
     iframe {

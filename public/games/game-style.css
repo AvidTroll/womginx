@@ -1,0 +1,102 @@
+:root {
+    --background: #181a1f;
+    --sidebar: #1c2025;
+    --sidebar-hover: #292f36;
+    --text: #e1e1e1;
+    --text-muted: #a0a0a0;
+    --button-bg: #5a6a91;
+    --button-hover: #475b7a;
+    --accent: #ff5252;
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Raleway', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--background);
+    color: var(--text);
+}
+
+/* Games Page Specific Styling */
+#games-container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-family: var(--font-secondary);
+    color: var(--accent);
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+#games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.game-tile {
+    background-color: var(--sidebar-hover);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    max-width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+.game-image {
+    width: 100%;
+    height: auto;
+}
+
+.game-title {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    color: var(--text);
+    font-family: var(--font-primary);
+}
+
+.play-button {
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: var(--button-bg);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
